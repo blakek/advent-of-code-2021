@@ -4,18 +4,12 @@ BEGIN {
   pitch = 0;
 }
 
-{
-  command = $1;
-  amount = $2;
+$1 == "up" { pitch -= $2; }
+$1 == "down" { pitch += $2 }
 
-  if (command == "forward") {
-    distance += amount;
-    depth += amount * pitch;
-  } else if (command == "up") {
-    pitch -= amount;
-  } else if (command == "down") {
-    pitch += amount;
-  }
+$1 == "forward" {
+  distance += $2;
+  depth += $2 * pitch;
 }
 
 END {

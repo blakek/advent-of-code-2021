@@ -3,18 +3,9 @@ BEGIN {
   totalDistance = 0;
 }
 
-{
-  direction = $1;
-  change = $2;
-
-  if (direction == "forward") {
-    totalDistance += change;
-  } else if (direction == "up") {
-    totalDepth -= change;
-  } else if (direction == "down") {
-    totalDepth += change;
-  }
-}
+$1 == "forward" { totalDistance += $2; }
+$1 == "up" { totalDepth -= $2; }
+$1 == "down" { totalDepth += $2 }
 
 END {
   print totalDistance * totalDepth;
